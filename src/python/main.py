@@ -7,4 +7,3 @@ import parser
 
 text = driver.get_monthly_bills()
 line_bot.push_text(text)
-#line_bot.post_cost_monthly()

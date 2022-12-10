@@ -79,16 +79,25 @@ def get_monthly_bills():
 
 def calc_bills(browser, text):
     total = 0
+    text2 = text
     elems_sum = browser.find_elements(By.CSS_SELECTOR, '#outgo.sum')
     for elem in elems_sum:
         # Add bills to text
         title = elem.find_element(By.CSS_SELECTOR, 'td:nth-child(1)')
         price = elem.find_element(By.CSS_SELECTOR, 'td:nth-child(2)')
-        text += f'\n{title.text} : {price.text}'
         price_int = int(price.text.replace(',', '').replace('円', ''))
+        text_price = '{:,}'.format(int('{:>8}'.format(price_int)))
+        text_add = '{:　<6}: {}円'.format(title.text.replace(' 合計', ''), text_price)
+        text += f'\n' + text_add
+        text2 += f'\n{title.text} :{price_int*2/3}'
+        
         total += price_int
     
+    total = '{:,}'.format(total)
     total = f'\n\n合計: {total}円'
     text += total
-    return text
+    return {
+        "summary": text,
+        "at": text2
+    }
 
