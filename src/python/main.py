@@ -1,7 +1,10 @@
 # coding: UTF-8
 import sys
 import os
-import utils
+from utils import driver
+from utils import line_bot
 import parser
 
-utils.get_monthly_bills()
+text = driver.get_monthly_bills()
+line_bot.push_text(text)
+#line_bot.post_cost_monthly()
