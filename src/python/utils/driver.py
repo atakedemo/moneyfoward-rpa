@@ -86,8 +86,9 @@ def calc_bills(browser, text):
         title = elem.find_element(By.CSS_SELECTOR, 'td:nth-child(1)')
         price = elem.find_element(By.CSS_SELECTOR, 'td:nth-child(2)')
         price_int = int(price.text.replace(',', '').replace('円', ''))
-        text_price = '{:,}'.format(int('{:>8}'.format(price_int)))
-        text_add = '{:　<6}: {}円'.format(title.text.replace(' 合計', ''), text_price)
+        #text_price = '{:,}'.format(int('{:>8}'.format(price_int)))
+        text_price = '{:,}円({:,})'.format(price_int, int(price_int*2/3))
+        text_add = '{:　<6}: {}'.format(title.text.replace(' 合計', ''), text_price)
         text += f'\n' + text_add
         text2 += f'\n{title.text} :{price_int*2/3}'
         

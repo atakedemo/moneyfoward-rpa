@@ -16,7 +16,7 @@ def push_text(text):
     text_sum = text["summary"]
     text_at = text["at"]
     messages_sum = TextSendMessage(text=text_sum)
-    messages_at = TextSendMessage(text=text_at)
+    #messages_at = TextSendMessage(text=text_at)
 
     # Push massages to LINE
     try:
